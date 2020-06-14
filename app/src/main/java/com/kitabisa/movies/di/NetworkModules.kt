@@ -1,7 +1,7 @@
-package com.kitabisa.moviedb.di
+package com.kitabisa.movies.di
 
 import android.content.Context
-import com.kitabisa.moviedb.network.MovieApi
+import com.kitabisa.movies.network.MovieApi
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

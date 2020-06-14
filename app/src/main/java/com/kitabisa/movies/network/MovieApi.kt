@@ -1,4 +1,4 @@
-package com.kitabisa.moviedb.network
+package com.kitabisa.movies.network
 
 import com.kitabisa.movies.model.MovieResponse
 import retrofit2.Response
