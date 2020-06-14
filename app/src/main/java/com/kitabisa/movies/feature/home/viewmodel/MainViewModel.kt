@@ -1,9 +1,9 @@
-package com.kitabisa.movies.viewmodel
+package com.kitabisa.movies.feature.home.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kitabisa.movies.model.MovieData
+import com.kitabisa.movies.model.Movie
 import com.kitabisa.movies.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import org.koin.core.KoinComponent
  */
 class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(), KoinComponent {
 
-    val moviesLiveData = MutableLiveData<List<MovieData>>()
+    val moviesLiveData = MutableLiveData<List<Movie>>()
 
     fun getMovies(){
         viewModelScope.launch {

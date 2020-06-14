@@ -1,14 +1,17 @@
 package com.kitabisa.movies.repository
 
-import com.kitabisa.movies.model.MovieData
+import com.kitabisa.movies.model.Movie
+import com.kitabisa.movies.model.MovieDetail
 
 /**
  * Created by Aryandi Putra<aryandi2712@gmail.com> on 13/06/20.
  */
 interface MovieRepository {
-    suspend fun getMovies(): List<MovieData>?
-    suspend fun getPopularMovies(): List<MovieData>?
-    suspend fun getUpcomingMovies(): List<MovieData>?
-    suspend fun getTopRatedMovies(): List<MovieData>?
-    suspend fun getNowPlayingMovies(): List<MovieData>?
+    suspend fun getMovies(): List<Movie>?
+    suspend fun getPopularMovies(): List<Movie>?
+    suspend fun getUpcomingMovies(): List<Movie>?
+    suspend fun getTopRatedMovies(): List<Movie>?
+    suspend fun getNowPlayingMovies(): List<Movie>?
+    suspend fun getMovieDetail(id: Int): MovieDetail?
+
 }

@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kitabisa.movies.R
 import com.kitabisa.movies.databinding.ItemMovieBinding
-import com.kitabisa.movies.model.MovieData
+import com.kitabisa.movies.model.Movie
 
 /**
  * Created by Aryandi Putra<aryandi2712@gmail.com> on 14/06/20.
  */
 class MovieAdapter(
-    private val movies: MutableList<MovieData>,
-    private val clickListener: (MovieData) -> Unit
+    private val movies: MutableList<Movie>,
+    private val clickListener: (Movie) -> Unit
 ) :
     RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
@@ -34,7 +34,7 @@ class MovieAdapter(
         holder.bind(movies.get(position))
     }
 
-    fun setMovies(movies: List<MovieData>) {
+    fun setMovies(movies: List<Movie>) {
         this.movies.clear()
         this.movies.addAll(movies)
         notifyDataSetChanged()
@@ -44,7 +44,7 @@ class MovieAdapter(
 
         private val binding = ItemMovieBinding.bind(view)
 
-        fun bind(movie: MovieData) = with(view) {
+        fun bind(movie: Movie) = with(view) {
             if (movie.posterPath != null) {
                 Glide.with(view.context).load(TMDB_IMAGEURL + movie.posterPath)
                     .into(binding.ivMovie)

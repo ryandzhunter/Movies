@@ -18,10 +18,10 @@ class MovieResponse(
     var totalPages: Int? = null,
     @SerializedName("results")
     @Expose
-    var results: List<MovieData>? = null
+    var results: List<Movie>? = null
 )
 
-data class MovieData(
+data class Movie(
     @SerializedName("vote_count")
     @Expose
     var voteCount: Int? = null,

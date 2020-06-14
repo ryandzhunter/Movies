@@ -1,6 +1,7 @@
 package com.kitabisa.movies.di
 
-import com.kitabisa.movies.viewmodel.MainViewModel
+import com.kitabisa.movies.feature.detail.MovieDetailViewModel
+import com.kitabisa.movies.feature.home.viewmodel.MainViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -9,4 +10,5 @@ import org.koin.dsl.module
  */
 val viewModelModules = module() {
     viewModel{ MainViewModel(get()) }
+    viewModel{ MovieDetailViewModel(get()) }
 }

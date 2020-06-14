@@ -1,5 +1,6 @@
 package com.kitabisa.movies.feature.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.PopupMenu
@@ -8,9 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kitabisa.movies.R
 import com.kitabisa.movies.databinding.ActivityMainBinding
+import com.kitabisa.movies.feature.detail.MovieDetailActivity
 import com.kitabisa.movies.feature.home.adapter.MovieAdapter
-import com.kitabisa.movies.model.MovieData
-import com.kitabisa.movies.viewmodel.MainViewModel
+import com.kitabisa.movies.model.Movie
+import com.kitabisa.movies.feature.home.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.getMovies()
-        mainViewModel.moviesLiveData.observe(this, Observer<List<MovieData>> {
+        mainViewModel.moviesLiveData.observe(this, Observer<List<Movie>> {
             adapter.setMovies(it)
         })
     }
@@ -59,8 +61,12 @@ class MainActivity : AppCompatActivity() {
         popupMenu.show()
     }
 
-    private fun doOnClickAdapter(movie: MovieData) {
-
+    private fun doOnClickAdapter(movie: Movie) {
+        movie.id?.let {
+            val intent = Intent(this, MovieDetailActivity::class.java)
+            intent.putExtra("id", it)
+            startActivity(intent)
+        }
     }
 
 }
