@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kitabisa.movies.model.Movie
 import com.kitabisa.movies.repository.MovieRepository
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,8 +18,12 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
 
     val moviesLiveData = MutableLiveData<List<Movie>>()
 
+    val handler = CoroutineExceptionHandler { _, exception ->
+        //Handle your exception
+    }
+
     fun getMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movies = withContext(Dispatchers.IO) {
                 movieRepository.getMovies()
             }
@@ -27,7 +32,7 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
     }
 
     fun getPopularMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movies = withContext(Dispatchers.IO) {
                 movieRepository.getPopularMovies()
             }
@@ -36,7 +41,7 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
     }
 
     fun getUpcomingMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movies = withContext(Dispatchers.IO) {
                 movieRepository.getUpcomingMovies()
             }
@@ -45,7 +50,7 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
     }
 
     fun getTopRatedMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movies = withContext(Dispatchers.IO) {
                 movieRepository.getTopRatedMovies()
             }
@@ -54,7 +59,7 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
     }
 
     fun getNowPlayingMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movies = withContext(Dispatchers.IO) {
                 movieRepository.getNowPlayingMovies()
             }
@@ -63,7 +68,7 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
     }
 
     fun getFavoriteMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movies = withContext(Dispatchers.IO) {
                 movieRepository.getAllFavoriteMovies()
             }

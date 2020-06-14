@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.kitabisa.movies.model.Movie
 import com.kitabisa.movies.model.MovieDetail
 import com.kitabisa.movies.repository.MovieRepository
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,8 +19,12 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewM
     val moviesLiveData = MutableLiveData<MovieDetail>()
     var favoriteState: MutableLiveData<Boolean> = MutableLiveData()
 
+    val handler = CoroutineExceptionHandler { _, exception ->
+        //Handle your exception
+    }
+
     fun getMovieDetail(id:Int){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movie = withContext(Dispatchers.IO) {
                 movieRepository.getMovieDetail(id)
             }
@@ -28,7 +33,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewM
     }
 
     fun isMovieFavorite(id:Int){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val movie = withContext(Dispatchers.IO) {
                 movieRepository.isFavoriteMovieExist(id)
             }
@@ -37,7 +42,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewM
     }
 
     fun addFavorite(movie: Movie){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val success = withContext(Dispatchers.IO) {
                 movieRepository.insertFavoriteMovie(movie)
             }
@@ -46,7 +51,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewM
     }
 
     fun removeFavorite(movie:Movie){
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             val success = withContext(Dispatchers.IO) {
                 movieRepository.removeFavoriteMovie(movie)
             }

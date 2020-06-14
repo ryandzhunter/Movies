@@ -2,6 +2,7 @@ package com.kitabisa.movies.di
 
 import android.content.Context
 import com.kitabisa.movies.network.MovieApi
+import com.kitabisa.movies.repository.interceptor.ConnectivityInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -43,6 +44,7 @@ fun provideInterceptor(
     val interceptors = arrayListOf<Interceptor>()
     interceptors.add(ChuckInterceptor(context))
     interceptors.add(httpLoggingInterceptor)
+    interceptors.add(ConnectivityInterceptor(context))
 
     val keyInterceptor = Interceptor { chain ->
 
