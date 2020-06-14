@@ -2,6 +2,7 @@ package com.kitabisa.movies.feature.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,20 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.moviesLiveData.observe(this, Observer<List<Movie>> {
             adapter.setMovies(it)
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.getItemId()
+        if (id == R.id.action_favorite) {
+            mainViewModel.getFavoriteMovies()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun showPopUpMenu() {

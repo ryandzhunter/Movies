@@ -1,6 +1,7 @@
 package com.kitabisa.movies
 
 import android.app.Application
+import com.kitabisa.movies.di.dataBaseModules
 import com.kitabisa.movies.di.networkModules
 import com.kitabisa.movies.di.repositoryModules
 import com.kitabisa.movies.di.viewModelModules
@@ -19,7 +20,7 @@ class MovieApplication : Application() {
             androidContext(this@MovieApplication)
             modules(
                 listOf(
-                    networkModules, repositoryModules, viewModelModules
+                    dataBaseModules, networkModules, repositoryModules, viewModelModules
                 )
             )
         }

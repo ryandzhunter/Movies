@@ -9,5 +9,5 @@ import org.koin.dsl.module
  * @version RepositoryModules, v 0.1 2019-10-21 22:42 by Aryandi Putra
  */
 val repositoryModules = module {
-    factory<MovieRepository> { MovieRepositoryImpl(get()) }
+    factory<MovieRepository> { MovieRepositoryImpl(get(), get()) }
 }

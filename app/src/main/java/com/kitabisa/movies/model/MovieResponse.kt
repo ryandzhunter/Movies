@@ -1,7 +1,10 @@
 package com.kitabisa.movies.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.kitabisa.movies.database.DB_FAVORITE_MOVIE_TABLE_NAME
 
 /**
  * Created by Aryandi Putra<aryandi2712@gmail.com> on 13/06/20.
@@ -21,13 +24,15 @@ class MovieResponse(
     var results: List<Movie>? = null
 )
 
+@Entity(tableName = DB_FAVORITE_MOVIE_TABLE_NAME)
 data class Movie(
+    @SerializedName("id")
+    @Expose
+    @PrimaryKey
+    var id: Int? = null,
     @SerializedName("vote_count")
     @Expose
     var voteCount: Int? = null,
-    @SerializedName("id")
-    @Expose
-    var id: Int? = null,
     @SerializedName("video")
     @Expose
     var video: Boolean? = null,

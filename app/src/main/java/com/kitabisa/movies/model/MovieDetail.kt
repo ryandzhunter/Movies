@@ -1,11 +1,19 @@
 package com.kitabisa.movies.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
+import com.kitabisa.movies.database.DB_FAVORITE_MOVIE_TABLE_NAME
 
 /**
  * Created by Aryandi Putra<aryandi2712@gmail.com> on 14/06/20.
  */
 data class MovieDetail(
+
+    @SerializedName("id")
+    @PrimaryKey
+    var id: Int = -1,
 
     @SerializedName("adult")
     var adult: Boolean = false,
@@ -13,7 +21,6 @@ data class MovieDetail(
     @SerializedName("budget")
     var budget: Int? = null,
 
-    @SerializedName("genres")
     var genres: List<Genre>? = null,
 
     @SerializedName("reviews")
@@ -21,9 +28,6 @@ data class MovieDetail(
 
     @SerializedName("homepage")
     var homepage: String? = null,
-
-    @SerializedName("id")
-    var id: Int = -1,
 
     @SerializedName("imdb_id")
     var imdbId: String? = null,
@@ -85,3 +89,27 @@ data class Review(
     var author: String,
     var content: String? = null
 )
+
+fun toMovie(movieDetail: MovieDetail): Movie {
+    movieDetail.let {
+        val genresId = arrayListOf<Int>()
+        it.genres?.forEach {
+            genresId.add(it.id)
+        }
+        return Movie(
+            it.id,
+            it.voteCount,
+            it.video,
+            it.voteAverage,
+            it.title,
+            it.popularity,
+            it.posterPath,
+            it.originalLanguage,
+            it.originalTitle,
+            genresId,
+            it.backdropPath,
+            it.adult,
+            it.overview
+        )
+    }
+}

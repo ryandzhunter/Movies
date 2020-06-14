@@ -62,4 +62,12 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
         }
     }
 
+    fun getFavoriteMovies(){
+        viewModelScope.launch {
+            val movies = withContext(Dispatchers.IO) {
+                movieRepository.getAllFavoriteMovies()
+            }
+            moviesLiveData.value = movies
+        }
+    }
 }

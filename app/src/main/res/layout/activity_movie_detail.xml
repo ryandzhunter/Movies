@@ -35,7 +35,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_favorite"
             app:layout_constraintStart_toEndOf="@+id/iv_movie"
             app:layout_constraintTop_toTopOf="@+id/iv_movie"
             tools:text="movie title" />
@@ -45,7 +45,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_movie_title"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_movie_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_title"
             tools:text="release date" />
@@ -64,20 +65,30 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="overview" />
 
-        <TextView
-            android:id="@+id/tv_review"
+        <ImageButton
+            android:id="@+id/b_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/review"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_favorite_inactive"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/review"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_overview" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_review"
@@ -87,6 +98,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_overview" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_review" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

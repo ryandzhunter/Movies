@@ -1,12 +1,13 @@
 package com.kitabisa.movies.repository
 
+import com.kitabisa.movies.database.dao.FavoriteMovieDao
 import com.kitabisa.movies.network.MovieApi
 import com.kitabisa.movies.model.Movie
 import com.kitabisa.movies.model.MovieDetail
 import com.kitabisa.movies.model.MovieResponse
 import retrofit2.Response
 
-class MovieRepositoryImpl(private val movieApi: MovieApi) : BaseRepository(), MovieRepository {
+class MovieRepositoryImpl(private val movieApi: MovieApi, private val favoriteMovieDao: FavoriteMovieDao) : BaseRepository(), MovieRepository {
 
     override suspend fun getMovies(): List<Movie>? {
         return fetchAPI(movieApi.getMovies(), "Error Fetching Movies")
@@ -26,6 +27,22 @@ class MovieRepositoryImpl(private val movieApi: MovieApi) : BaseRepository(), Mo
 
     override suspend fun getNowPlayingMovies(): List<Movie>? {
         return fetchAPI(movieApi.getNowPlayingMovies(), "Error Fetching Now Playing Movies")
+    }
+
+    override suspend fun insertFavoriteMovie(movie: Movie): Long {
+        return favoriteMovieDao.insertMovie(movie)
+    }
+
+    override suspend fun removeFavoriteMovie(movie: Movie): Int {
+        return favoriteMovieDao.removeMovie(movie)
+    }
+
+    override suspend fun getAllFavoriteMovies(): List<Movie> {
+        return favoriteMovieDao.getFavoriteMovies()
+    }
+
+    override suspend fun isFavoriteMovieExist(movieId: Int): Movie? {
+        return favoriteMovieDao.getMovie(movieId)
     }
 
     override suspend fun getMovieDetail(id: Int): MovieDetail? {
