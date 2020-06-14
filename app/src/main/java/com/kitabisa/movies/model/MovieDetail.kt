@@ -109,7 +109,8 @@ fun toMovie(movieDetail: MovieDetail): Movie {
             genresId,
             it.backdropPath,
             it.adult,
-            it.overview
+            it.overview,
+            it.releaseDate
         )
     }
 }
