@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Movies</string>
     <string name="category_button">Categories</string>
+    <string name="popular_menu">Popular</string>
+    <string name="upcoming_menu">Upcoming</string>
+    <string name="toprated_menu">Top Rated</string>
+    <string name="nowplaying_menu">Now Playing</string>
 </resources>

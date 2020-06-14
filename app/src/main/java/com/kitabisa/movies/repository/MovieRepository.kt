@@ -7,4 +7,8 @@ import com.kitabisa.movies.model.MovieData
  */
 interface MovieRepository {
     suspend fun getMovies(): List<MovieData>?
+    suspend fun getPopularMovies(): List<MovieData>?
+    suspend fun getUpcomingMovies(): List<MovieData>?
+    suspend fun getTopRatedMovies(): List<MovieData>?
+    suspend fun getNowPlayingMovies(): List<MovieData>?
 }

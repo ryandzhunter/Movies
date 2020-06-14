@@ -26,4 +26,40 @@ class MainViewModel(private val movieRepository: MovieRepository) : ViewModel(),
         }
     }
 
+    fun getPopularMovies(){
+        viewModelScope.launch {
+            val movies = withContext(Dispatchers.IO) {
+                movieRepository.getPopularMovies()
+            }
+            moviesLiveData.value = movies
+        }
+    }
+
+    fun getUpcomingMovies(){
+        viewModelScope.launch {
+            val movies = withContext(Dispatchers.IO) {
+                movieRepository.getUpcomingMovies()
+            }
+            moviesLiveData.value = movies
+        }
+    }
+
+    fun getTopRatedMovies(){
+        viewModelScope.launch {
+            val movies = withContext(Dispatchers.IO) {
+                movieRepository.getTopRatedMovies()
+            }
+            moviesLiveData.value = movies
+        }
+    }
+
+    fun getNowPlayingMovies(){
+        viewModelScope.launch {
+            val movies = withContext(Dispatchers.IO) {
+                movieRepository.getNowPlayingMovies()
+            }
+            moviesLiveData.value = movies
+        }
+    }
+
 }
