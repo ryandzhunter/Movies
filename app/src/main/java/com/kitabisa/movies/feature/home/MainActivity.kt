@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kitabisa.movies.R
+import com.kitabisa.movies.common.utils.MarginItemDecoration
 import com.kitabisa.movies.databinding.ActivityMainBinding
 import com.kitabisa.movies.feature.detail.MovieDetailActivity
 import com.kitabisa.movies.feature.home.adapter.MovieAdapter
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.rvMovies.layoutManager = LinearLayoutManager(this)
+        binding.rvMovies.addItemDecoration(MarginItemDecoration(
+            resources.getDimension(R.dimen.default_padding).toInt())
+        )
         binding.rvMovies.adapter = adapter
         binding.bCategories.setOnClickListener {
             showPopUpMenu()
